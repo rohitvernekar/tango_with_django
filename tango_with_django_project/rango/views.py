@@ -1,4 +1,7 @@
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Rango sas hello world")
+    return HttpResponse("Rango says: hello world  <a href='/rango/about'>About</a>")
+
+def about(request):
+    return HttpResponse("Rango says: Here is the about page, to get back to Home click <a href='/rango'>Home</a>")
