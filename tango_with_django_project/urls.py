@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
-
+from rango import views
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -15,7 +15,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^rango/', include('rango.urls')),
+    #url(r'^rango/', include('rango.urls')),
+    url(r'^index/$',views.index),
+    url(r'^about/$',views.about),
 )
 
 if settings.DEBUG:
