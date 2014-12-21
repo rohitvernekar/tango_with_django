@@ -5,7 +5,7 @@ from rango.models import Category, Page
 
 def index(request):
     context=RequestContext(request)
-    category_list = Category.objects.order_by('-likes')[:5]
+    category_list = Category.objects.order_by('-views')[:5]
     context_dict={'categories':category_list}
     for category in category_list:
         category.url = category.name.replace(' ','_')
@@ -17,7 +17,6 @@ def about(request):
     return render_to_response('rango/about.html',context_dict,context)
 
 def category(request, category_name_url):
-    import pdb;pdb.set_trace()
     context = RequestContext(request)
     category_name = category_name_url.replace('_',' ')
     context_dict = {'category_name': category_name}
