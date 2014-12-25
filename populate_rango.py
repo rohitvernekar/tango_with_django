@@ -41,12 +41,12 @@ def populate():
         for p in Page.objects.filter(category=c):
             print "- {0} - {1}".format(str(c), str(p))
 
-def add_page(cat, title, url):
+def add_page(cat, title, url,views=0):
     p = Page.objects.get_or_create(category=cat, title=title, url=url)[0]
     return p
 
-def add_cat(name,views,likes,type):
-    c = Category.objects.get_or_create(name=name,views=views,likes=likes)[0]
+def add_cat(name,views,likes):
+    c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0]
     return c
 
 # Start execution here!
