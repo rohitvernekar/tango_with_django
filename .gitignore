@@ -12,6 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+bin/
 eggs/
 lib/
 lib64/
@@ -27,7 +28,6 @@ var/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -44,8 +44,17 @@ coverage.xml
 *.mo
 *.pot
 
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
 # Django stuff:
 *.log
+*.pot
 
 # Sphinx documentation
 docs/_build/
