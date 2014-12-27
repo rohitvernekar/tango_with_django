@@ -4,6 +4,12 @@ from django.shortcuts import render_to_response
 from rango.models import Category, Page
 from rango.forms import CategoryForm
 
+def encode_url(str):
+    return str.replace(' ', '_')
+
+def decode_url(str):
+    return str.replace('_', ' ')
+
 def index(request):
     context=RequestContext(request)
     category_list = Category.objects.order_by('-views')[:5]
@@ -34,10 +40,10 @@ def category(request, category_name_url):
 
 def add_category(request):
     context=RequestContext(request)
-    
+
     if request.method == 'POST':
         form = CategoryForm(request.POST)
-       
+
         if form.is_valid():
             form.save(commit=True)
 
@@ -49,3 +55,21 @@ def add_category(request):
         form = CategoryForm()
 
     return render_to_response('rango/add_category.html', {'form':form}, context)
+
+def add_page(request, category_name_url):
+    context = RequestContext(request)
+    category_name = decode_url(category_name)
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=False)
+
+            try:
+                cat=Category.objects.get(name=category_name)
+                page.category = cat
+            except Category.DoesNotExist:
+                return_to_response('rango/add_category.html',{},context)
+
+            page.views=0
+            page.save()
