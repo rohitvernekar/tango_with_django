@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from rango.models import Category, Page
-from rango.forms import CategoryForm
+from rango.forms import CategoryForm, PageForm
 
 def encode_url(str):
     return str.replace(' ', '_')
@@ -58,12 +58,12 @@ def add_category(request):
 
 def add_page(request, category_name_url):
     context = RequestContext(request)
-    category_name = decode_url(category_name)
+    category_name = decode_url(category_name_url)
     if request.method == 'POST':
         form = PageForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=False)
+            page = form.save(commit=False)
 
             try:
                 cat=Category.objects.get(name=category_name)
@@ -73,3 +73,13 @@ def add_page(request, category_name_url):
 
             page.views=0
             page.save()
+            return category(request, category_name_url)
+        else:
+            print form.errors
+    else:
+        form = PageForm()
+
+    return render_to_response('rango/add_page.html',
+             {'category_name_url': category_name_url,
+             'category_name': category_name, 'form':form},
+             context)
