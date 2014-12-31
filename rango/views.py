@@ -12,7 +12,7 @@ def decode_url(str):
 
 def index(request):
     context=RequestContext(request)
-    category_list = Category.objects.order_by('-views')[:5]
+    category_list = Category.objects.order_by('-views')[:]
     context_dict={'categories':category_list}
     for category in category_list:
         category.url = category.name.replace(' ','_')
@@ -78,7 +78,6 @@ def add_page(request, category_name_url):
             print form.errors
     else:
         form = PageForm()
-
     return render_to_response('rango/add_page.html',
              {'category_name_url': category_name_url,
              'category_name': category_name, 'form':form},
