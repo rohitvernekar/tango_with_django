@@ -1,0 +1,22 @@
+<DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+</head>
+<body>
+    <h1>Register with Rango</h1>
+    {% if registered %}
+        Rango says:<strong>Thank you for registering!</strong><br/>
+        <a href="/rango/index/">Return home page</a>
+    {% else %}
+        Rango says:<strong>Register here!</strong></br>
+    <form id="user_form" method="post" action='/rango/register/' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+    	{{ profile_form.as_p }}
+
+    	<input type="submit" name="submit" value="Register"/>
+    </form>
+    {% endif %}
+</body>
+</html>
