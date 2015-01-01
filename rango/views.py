@@ -1,9 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
 from rango.forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login
 
 def encode_url(str):
     return str.replace(' ', '_')
@@ -118,3 +119,22 @@ def register(request):
             'rango/register.html',
             {'user_form': user_form, 'profile_form':profile_form,'registered':registered},
             context)
+
+def user_login(request):
+    context = RequestContext(request)
+    user=""
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/rango/')
+            else:
+                return HttpResponse("Invalid login details supplied")
+    else:
+        return render_to_response('rango/login.html', {'user':user}, context)
+
