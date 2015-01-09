@@ -35,6 +35,8 @@ def category(request, category_name_url):
         pages=Page.objects.filter(category=category)
         context_dict['pages'] = pages
         context_dict['category'] = category
+        context_dict['user']=context['user']
+
     except Category.DoesNotExist:
         pass
 
