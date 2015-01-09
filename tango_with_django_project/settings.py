@@ -16,6 +16,8 @@ MANAGERS = ADMINS
 
 DATABASE_PATH=os.path.join(PROJECT_PATH,'rango.db')
 
+LOGIN_URL ='/rango/login/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
