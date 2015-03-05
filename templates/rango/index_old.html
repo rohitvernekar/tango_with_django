@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %} <!-- New line -->
+<html>
+
+    <head>
+        <title> Rango </title>
+        <link rel="StyleSheet" type="text/css" href="{{ STATIC_URL }}css/index.css" />
+    </head>
+
+    <body>
+        <a href="#menu"><div class="bogocircle"><div class="blog">Rohit Blog</div></div></a>
+        <a href="#menu"><div class="arrow">Click <br>Here</div>
+
+        <div id="page" align="center">
+        <a name="menu"></a>
+            <div id="tops">
+                 <div class="mylogo"><a href="/rango/">Rohit Vernekar</a></div> 
+                 <div class="topmenu">
+        <li><a href="/rango/">Home</a></li>
+        <li><a href="/rango/about/">About Us</a></li>
+        <li><a href="/rango/contactus/">Contact Us</a></li>
+        </div></div>
+        <br/><br/>         
+
+            <table>
+                <thead>
+                <tr>
+            <th scope="col" colspan="2"> 
+            <a class="astyle" href="/rango/about/">About</a>
+            </th>
+            <th scope="col">
+            <a class="astyle" href="/rango/about/">Contact</a>
+            </th>
+            {% if user.is_authenticated %}
+                <th scope="col">
+                <a class="astyle" href="/rango/add_category/"> Add a new category</a>
+                </th>
+                <th scope="col">
+                <a class="astyle" href="/rango/restricted/">Restricted</a><br/>
+                </th>
+                <th scope="col">
+                <a class="astyle" href="/rango/logout/">Logout</a><br/>
+                </th>
+            {% else %}
+                <th scope="col"> 
+                <a class="astyle" href="/rango/login/">Login</a><br/>
+                </th>
+                <th scope="col">
+                <a class="astyle" href="/rango/register/">Sign up</a>
+                </th>
+                {% endif %}
+          </tr>
+          </thead>
+          </table>
+
+        {% if user.is_authenticated %}
+        <h1> Rango says ...hello {{ user.username }}</h1>
+        {% else %}
+        <h1>Rango says...hello world!</h1>
+        {% endif %}
+
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li><a href="/rango/category/{{ category.url }}"> {{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+     
+    </body>
+
+</html>    
