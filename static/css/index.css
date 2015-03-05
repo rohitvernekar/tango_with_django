@@ -30,3 +30,67 @@ td{
 
 }
 
+.mylogo{
+font-family: 'Fjalla One', sans-serif;
+font-size:35px;
+color:#fff;
+position:absolute;
+top:1095px;
+left:7%;
+}
+
+.blog{
+font-family: 'Fjalla One', sans-serif;
+font-size:35px;
+color:#fff;
+position:relative;
+top:105px;
+text-align:center;
+}
+
+.bogocircle{
+	width: 250px;
+	height: 250px;
+	border-radius: 100%;
+	background: #395870;
+	position:absolute;
+	top: 300px;
+	left: 10%;
+
+}
+
+.topmenu{margin-left:10%;}
+
+#page{
+	margin-top:1000px	;
+}
+
+/*------------------Arrow image styling for click here ----------------*/
+
+.arrow{
+	background: url("http://127.0.0.1:8000/media/arrow-images/bluearrow_by_simplysilent-d6b9x2n.png") no-repeat;
+	position: absolute;
+	padding: 38px 0 0 120px;
+	height: 46px;
+	right: 15%;
+	top: 370px;
+	font-family: 'Fjalla One', sans-serif;
+    font-size: 18px;
+}
+
+/*-----------------Void * styling ---------------------------*/
+.void{
+font-family: 'Fjalla One', sans-serif;
+font-size:60px;
+color:transparent;
+position:absolute;
+top:395px;
+right:40%;
+text-align:center;
+}
+
+/*------------------Main top menu-------------*/
+#tops {
+	background: #395870;
+}
+
