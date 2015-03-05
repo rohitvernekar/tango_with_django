@@ -1,2 +1,2 @@
-tango_with_django
+My Blogspot
 =================
