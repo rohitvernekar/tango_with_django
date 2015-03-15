@@ -33,9 +33,11 @@ def category(request, category_name_url):
     try:
         category = Category.objects.get(name=category_name)
         pages=Page.objects.filter(category=category)
+        likes=category.likes
         context_dict['pages'] = pages
         context_dict['category'] = category
         context_dict['user']=context['user']
+        context_dict['likes']=likes
 
     except Category.DoesNotExist:
         pass
@@ -152,3 +154,28 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/rango/")
+
+def add_likes(request, category_name):
+    context = RequestContext(request)
+    category_name = decode_url(category_name)
+    
+    context_dict = {'category_name': category_name}
+    try:
+        category = Category.objects.get(name=category_name)
+        pages=Page.objects.filter(category=category)
+        context_dict['pages'] = pages
+        context_dict['category'] = category
+        context_dict['user']=context['user']
+        count=category.likes
+        count+=1
+        category.likes=count
+        category.save()
+        context_dict['likes']=count
+
+    except Category.DoesNotExist:
+        pass
+
+
+    return render_to_response('rango/category.html',context_dict,context)
+
+
