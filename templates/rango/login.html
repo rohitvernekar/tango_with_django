@@ -2,15 +2,27 @@
 <html>
 <head>
 	<title>Login page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1> Login to Rango</h1>
-    <form id="login_form" method="post" action="/rango/login/">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="20"/><br/>
-    Password: <input type="password" name="password" value="" size="20"/><br/>
-
-    <input type="submit" value="Login"/>
-    </form>
+    <div class="container jumbotron">
+        <h1> Login to Rango</h1>
+        <form role="form" id="login_form" method="post" action="/rango/login/">
+        {% csrf_token %}
+            <div class="form-group col-xs-3">
+                <label for="usn"> Username:</label> <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" size="20"/><br/>
+            </div>
+            <div class="form-group col-xs-3">
+                <label for="pwd">Password: </label><input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" size="20"/>
+            </div>
+            <div class="checkbox enabled">
+                <label><input type="checkbox"> Remember me </label>
+            </div>
+         <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
